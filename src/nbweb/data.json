@@ -1,0 +1,24 @@
+{
+    "https.//odishatv.in": {
+        "name": "OdishaTV",
+        "article": {
+            "title": {
+                "selector": "h1"
+            },
+            "content": {
+                "selector": "div.article-content > p"
+            }
+        }
+    },
+    "https://www.techspot.com" : {
+        "name": "TechSpot",
+        "article": {
+            "title": {
+                "selector": "h1"
+            },
+            "content": {
+                "selector": "div.articleBody > :not(div.related-news)"
+            }
+        }
+    }
+}

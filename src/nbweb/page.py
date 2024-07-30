@@ -3,7 +3,8 @@ import re
 
 import httpx
 
-HTML_DIR="html"
+HTML_DIR = "html"
+
 
 class Page:
     def __init__(self, url):
@@ -15,7 +16,7 @@ class Page:
         if os.path.exists(self.filepath):
             html = self._fetch_from_cache()
         else:
-            html = self._fetch() 
+            html = self._fetch()
             if html is not None:
                 self._save_to_cache(html)
         return html
