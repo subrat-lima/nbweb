@@ -1,6 +1,7 @@
+from urllib.parse import urlparse
+
 from importlib.resources import files
 from parsel import Selector
-from nbweb.page import Page
 
 
 class Parser:
@@ -17,7 +18,7 @@ class Parser:
         return data
 
     def _get_content(self, selector):
-        elems = self.parser.css(f"{selector}::text").getall()
+        elems = self.parser.css(selector).getall()
         if elems is not None and len(elems) > 0:
             return "\n".join(elems)
         return ""

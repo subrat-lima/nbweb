@@ -20,3 +20,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/subrat-lima/nbweb"
 Issues = "https://github.com/subrat-lima/nbweb/issues"
+
+[project.scripts]
+nbweb = "nbweb.cli:cli"
