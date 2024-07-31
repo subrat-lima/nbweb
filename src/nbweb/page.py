@@ -3,7 +3,7 @@ import re
 
 import httpx
 
-HTML_DIR = "html"
+HTML_DIR = ".cache/html"
 
 
 class Page:

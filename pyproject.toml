@@ -20,6 +20,3 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/subrat-lima/nbweb"
 Issues = "https://github.com/subrat-lima/nbweb/issues"
-
-[tool.setup.packages.find]
-where = ["src"]
