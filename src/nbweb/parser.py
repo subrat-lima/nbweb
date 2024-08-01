@@ -1,3 +1,5 @@
+import json
+
 from urllib.parse import urlparse
 
 from importlib.resources import files
@@ -5,8 +7,8 @@ from parsel import Selector
 
 
 class Parser:
-    def __init__(self, website, html):
-        self.website = website
+    def __init__(self, link, html):
+        self.link = link
         self.html = html
         self.parser = Selector(text=html)
         self._set_rules()
@@ -24,8 +26,16 @@ class Parser:
         return ""
 
     def _set_rules(self):
-        json_text = files("nbweb").joinpath("data.json").read_text()
-        self.rules = Selector(text=json_text)
-        print(f"rules: {self.rules}")
-        self.rules = self.rules.jmespath(f'"{self.website}".rules').get()
-        print(f"rules: {self.rules}")
+        o = urlparse(self.link)
+        json_data = json.loads(files("nbweb").joinpath("data.json").read_text())
+
+        for entry in json_data:
+            e = urlparse(entry["url"])
+            print(f"o.hostname: {o.hostname}")
+            print(f"e.hostname: {e.hostname}")
+            if o.hostname in e.hostname:
+                self.rules = entry["rules"]
+                print(f"rules: {self.rules}")
+                return
+
+        raise TypeError("url not supported")

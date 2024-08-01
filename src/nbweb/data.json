@@ -1,6 +1,7 @@
-{
-    "https://odishatv.in": {
+[
+    {
         "name": "OdishaTV",
+        "url": "https://odishatv.in",
         "rules": {
             "title": {
                 "selector": "h1::text"
@@ -13,8 +14,9 @@
             }
         }
     },
-    "https://www.techspot.com" : {
+    {
         "name": "TechSpot",
+        "url": "https://www.techspot.com",
         "rules": {
             "title": {
                 "selector": "h1::text"
@@ -24,4 +26,4 @@
             }
         }
     }
-}
+]
