@@ -22,7 +22,7 @@
                 "selector": "h1::text"
             },
             "content": {
-                "selector": "div.articleBody > :not(div.related-news)::text"
+                "selector": "div.articleBody > :not(.twitter-tweet):not(div.related-news)::text"
             }
         }
     }
