@@ -1,8 +1,9 @@
 import sys
+
 from nbweb.app import get_content
 
 
-def cli():
+def cli() -> None:
     if len(sys.argv) != 2:
         print("error")
         print(f"usage: {sys.argv[0]} <url>")

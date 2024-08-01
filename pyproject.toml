@@ -17,6 +17,17 @@ classifiers = [
     "License :: OSI Approved :: MIT License"
 ]
 
+[project.optional-dependencies]
+test = [
+    "pytest"
+]
+formatter = [
+    "black"
+]
+dev = [
+    "nbweb[test,formatter]",
+]
+
 [tool.setuptools.dynamic]
 version = {attr = "nbweb.__VERSION__"}
 

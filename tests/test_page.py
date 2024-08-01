@@ -1,27 +1,25 @@
 from nbweb.page import Page
 
-import pytest
 
-
-def test_failure():
+def test_failure() -> None:
     url = "https://subratlima.xyz"
     p = Page(url)
     html = p.get()
     assert html is None
 
 
-def test_success():
+def test_success() -> None:
     url = "https://httpbin.org"
     p = Page(url)
     html = p.get()
     assert html is not None
 
 
-def monkeypatch_func(*args, **kwargs):
+def monkeypatch_func(*kargs, **kwargs) -> None:
     return "one two three"
 
 
-def test_load_from_cache(monkeypatch):
+def test_load_from_cache(monkeypatch) -> None:
     url = "https://httpbin.org/get"
     p = Page(url)
     html = p.get()

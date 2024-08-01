@@ -1,6 +1,11 @@
 # nbweb
 nbweb is short for no bloat web
 
+## installation
+```sh
+pip install nbweb
+```
+
 ## usage
 ```sh
 nbweb <url>
