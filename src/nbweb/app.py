@@ -13,6 +13,7 @@ def get_content(url):
     content = Parser(rules, html).get()
     return content
 
+
 def get_rules(url):
     u = urlparse(url)
     json_data = json.loads(files("nbweb").joinpath("data.json").read_text())
@@ -21,4 +22,3 @@ def get_rules(url):
         if u.hostname in e.hostname:
             return entry["rules"]
     raise TypeError("url not supported")
-

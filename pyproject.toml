@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nbweb"
-version = "0.0.1"
+dynamic = ["version"]
 authors = [
     { name="Subrat Lima", email="subrat.k.lima@protonmail.com" }
 ]
@@ -16,6 +16,9 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License"
 ]
+
+[tool.setuptools.dynamic]
+version = {attr = "nbweb.__VERSION__"}
 
 [project.urls]
 Homepage = "https://github.com/subrat-lima/nbweb"
