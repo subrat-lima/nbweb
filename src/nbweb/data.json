@@ -71,5 +71,48 @@
                 "jmespath": "articleBody"
             }
         }
+    },
+    {
+        "name": "Wired",
+        "url": "https://www.wired.com",
+        "rules": {
+            "prepare": "script[type='application/ld+json']::text",
+            "title": {
+                "jmespath": "headline"
+            },
+            "img": {
+                "jmespath": "thumbnailUrl"
+            },
+            "content": {
+                "jmespath": "articleBody"
+            }
+        }
+    },
+    {
+        "name": "APNews",
+        "url": "https://www.apnews.com",
+        "rules": {
+            "title": {
+                "selector": "h1::text"
+            },
+            "content": {
+                "selector": "div.Page-storyBody > .RichTextBody > p::text"
+            }
+        }
+    },
+    {
+        "name": "EnGadget",
+        "url": "https://www.engadget.com",
+        "rules": {
+            "title": {
+                "selector": "h1::text"
+            },
+            "img": {
+                "selector": "img.caas-img::attr(data-src)"
+            },
+            "content": {
+                "selector": "div.caas-body > p::text"
+            }
+        }
     }
 ]

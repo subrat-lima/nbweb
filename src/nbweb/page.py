@@ -3,6 +3,8 @@ import re
 
 import httpx
 
+from fake_useragent import UserAgent
+
 HTML_DIR = ".cache/html"
 
 
@@ -26,16 +28,19 @@ class Page:
             os.makedirs(HTML_DIR)
 
     def _set_filename(self) -> None:
-        regex = r"^(https?://)?(?P<url>(?P<domain>[\w.]+)(/[\w.]+)*)"
+        regex = r"^(https?://)?(?P<url>(?P<domain>[\w.]+)(/[\w.-_]+)*)"
         r = re.search(regex, self.url)
-        self.filename = r.group("url").replace("/", "_")
+        self.filename = r.group("url").replace("/", "_").strip()
         self.filepath = os.path.join(HTML_DIR, self.filename)
 
     def _fetch(self) -> str:
         try:
-            r = httpx.get(self.url)
+            ua = UserAgent()
+            headers = {"User-Agent": ua.random}
+            r = httpx.get(self.url, headers = headers)
             r.raise_for_status()
         except httpx.HTTPError:
+            print("could not fetch page")
             return None
         return r.text
 
