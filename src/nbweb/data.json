@@ -25,5 +25,51 @@
                 "selector": "div.articleBody > :not(.twitter-tweet):not(div.related-news)::text"
             }
         }
+    },
+    {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com",
+        "rules": {
+            "title": {
+                "selector": "h1::text"
+            },
+            "img": {
+                "selector": "img.attachment-post-thumbnail::attr(srcset)"
+            },
+            "content": {
+                "selector": "div.wp-block-post-content > p::text"
+            }
+        }
+    },
+    {
+        "name": "XDA",
+        "url": "https://www.xda-developers.com",
+        "rules": {
+            "title": {
+                "selector": "h1:not(.hide)::text"
+            },
+            "img": {
+                "selector": ".heading_image img::attr(data-img-url)"
+            },
+            "content": {
+                "selector": "div.content-block-regular > p::text"
+            }
+        }
+    },
+    {
+        "name": "TheVerge",
+        "url": "https://www.theverge.com",
+        "rules": {
+            "prepare": "script[type='application/ld+json']::text",
+            "title": {
+                "jmespath": "headline"
+            },
+            "img": {
+                "jmespath": "thumbnailUrl"
+            },
+            "content": {
+                "jmespath": "articleBody"
+            }
+        }
     }
 ]

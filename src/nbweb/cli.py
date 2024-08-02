@@ -1,4 +1,5 @@
 import sys
+import json
 
 from nbweb.app import get_content
 
@@ -10,6 +11,7 @@ def cli() -> None:
         return
     url = sys.argv[1]
     content = get_content(url)
+    content = json.dumps(content, indent=4)
     print(content)
 
 
