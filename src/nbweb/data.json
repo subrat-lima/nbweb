@@ -129,5 +129,20 @@
                 "selector": "div.entry-content > :not(figure) *::text"
             }
         }
+    },
+    {
+        "name": "ArsTechnica",
+        "url": "https://arstechnica.com",
+        "rules": {
+            "title": {
+                "selector": "h1::text"
+            },
+            "img": {
+                "selector": "figure.intro-image > img::attr(src)"
+            },
+            "content": {
+                "selector": "div.article-content > :not(aside):not(figure) *::text"
+            }
+        }
     }
 ]

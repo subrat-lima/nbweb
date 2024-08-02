@@ -40,6 +40,8 @@ class Page:
             r = httpx.get(self.url, headers = headers)
             r.raise_for_status()
         except httpx.HTTPError:
+            print(r.response)
+            print(r.text)
             print("could not fetch page")
             return None
         return r.text
