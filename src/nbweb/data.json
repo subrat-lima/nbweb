@@ -96,7 +96,7 @@
                 "selector": "h1::text"
             },
             "content": {
-                "selector": "div.Page-storyBody > .RichTextBody > p::text"
+                "selector": "div.Page-storyBody > .RichTextBody > p *::text"
             }
         }
     },
@@ -108,10 +108,25 @@
                 "selector": "h1::text"
             },
             "img": {
-                "selector": "img.caas-img::attr(data-src)"
+                "selector": "div.caas-img-container > img.caas-img::attr(data-src)"
             },
             "content": {
-                "selector": "div.caas-body > p::text"
+                "selector": "div.caas-body > p *::text"
+            }
+        }
+    },
+    {
+        "name": "GeekWire",
+        "url": "https://www.geekwire.com",
+        "rules": {
+            "title": {
+                "selector": "h1::text"
+            },
+            "img": {
+                "selector": "figure.wp-block-image > img::attr(srcset)"
+            },
+            "content": {
+                "selector": "div.entry-content > :not(figure) *::text"
             }
         }
     }
