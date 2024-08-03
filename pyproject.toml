@@ -10,7 +10,7 @@ authors = [
 ]
 description = "an application to simplify web data"
 readme = "README.md"
-dependencies = ["httpx", "parsel"]
+dependencies = ["httpx", "parsel", "fake-useragent"]
 requires-python = ">= 3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
