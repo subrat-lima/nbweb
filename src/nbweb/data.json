@@ -6,6 +6,9 @@
             "title": {
                 "selector": "h1::text"
             },
+            "published": {
+                "selector": "ul.article-author:nth-child(3) > li:nth-child(1)::text" 
+            },
             "img": {
                 "selector": "div#storymultiimg div.article-featured > img::attr(data-src)"
             },

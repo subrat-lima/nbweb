@@ -37,7 +37,7 @@ class Page:
         try:
             ua = UserAgent()
             headers = {"User-Agent": ua.random}
-            r = httpx.get(self.url, headers = headers)
+            r = httpx.get(self.url, headers=headers)
             r.raise_for_status()
         except httpx.HTTPError:
             print(r.response)

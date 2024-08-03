@@ -6,11 +6,20 @@ from nbweb.page import Page
 from nbweb.parser import Parser
 
 
-def get_content(url: str):
+def get_content(url: str, return_type: str):
     rules = get_rules(url)
     html = Page(url).get()
     content = Parser(rules, html).get()
+    if return_type == "txt":
+        return json2txt(content)
     return content
+
+
+def json2txt(content):
+    data = ""
+    for attr, value in content.items():
+        data += f"{attr}:\n{value}\n\n"
+    return data
 
 
 def get_rules(url: str):
