@@ -1,11 +1,16 @@
 import os
 import re
 
+from datetime import datetime, timedelta
+
+from pathlib import Path
+
 import httpx
 
 from fake_useragent import UserAgent
 
-HTML_DIR = ".cache/html"
+HTML_DIR = os.path.join(Path.home(), ".cache", "nbweb", "html")
+CACHE_SAVE_DAYS = 7
 
 
 class Page:
@@ -13,6 +18,15 @@ class Page:
         self.url = url
         self._set_folder()
         self._set_filename()
+        self._clear_old()
+
+    def _clear_old(self):
+        cache_expiry_date = datetime.today() - timedelta(days=CACHE_SAVE_DAYS)
+        for filename in os.listdir(HTML_DIR):
+            filepath = os.path.join(HTML_DIR, filename)
+            creation_ts = os.path.getctime(filepath)
+            if creation_ts < cache_expiry_date.timestamp():
+                os.remove(filepath)
 
     def get(self) -> str:
         if os.path.exists(self.filepath):
@@ -28,9 +42,11 @@ class Page:
             os.makedirs(HTML_DIR)
 
     def _set_filename(self) -> None:
-        regex = r"^(https?://)?(?P<url>(?P<domain>[\w.]+)(/[\w.-_]+)*)"
+        regex = r"^(https?://)?(?P<url>(?P<domain>[\w.]+)([/][\w.-_]+)*)"
+        print("regex")
         r = re.search(regex, self.url)
         self.filename = r.group("url").replace("/", "_").strip()
+        print("filename: ", self.filename)
         self.filepath = os.path.join(HTML_DIR, self.filename)
 
     def _fetch(self) -> str:
