@@ -22,15 +22,27 @@ class Parser:
                 raise TypeError("selector not found")
         return data
 
-    def _get_content_by_css(self, selector: str) -> str:
-        elems = self.parser.css(selector).getall()
+    def get_rss(self):
+        data = []
+        articles = self.parser.css(self.rules["list"]).getall()
+        for article in articles:
+            item = {}
+            for key in self.rules["item"]:
+                item[key] = self._get_content_by_css(
+                    self.rules["item"][key]["selector"], Selector(text=article)
+                )
+            data.append(item)
+        return data
+
+    def _get_content_by_css(self, selector: str, parser=None) -> str:
+        if parser is None:
+            parser = self.parser
+        elems = parser.css(selector).getall()
         if elems is not None and len(elems) > 0:
             return "\n".join(elems)
         return ""
 
     def _get_content_by_jmespath(self, selector: str) -> str:
-        print(f"selector: {selector}")
-        print(f"parser: {self.parser}")
         elems = self.parser.jmespath(selector).getall()
         if elems is not None and len(elems) > 0:
             return "\n".join(elems)

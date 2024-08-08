@@ -2,6 +2,23 @@
     {
         "name": "OdishaTV",
         "url": "https://odishatv.in",
+        "rss": {
+            "list": "div.listing-news-start .listing-result-news, div.mobile-listing-start div.mobile-listing",
+            "item": {
+                "title": {
+                    "selector": "h5::text"
+                },
+                "link": {
+                    "selector": "a:first-child::attr(href)"
+                },
+                "description": {
+                    "selector": "p::text"
+                },
+                "published" : {
+                    "selector": "ul > li:first-child::text"
+                }
+            }
+        },
         "rules": {
             "title": {
                 "selector": "h1::text"

@@ -50,7 +50,7 @@ class Page:
 
     def _fetch(self) -> str:
         try:
-            ua = UserAgent()
+            ua = UserAgent(platforms="pc")
             headers = {"User-Agent": ua.random}
             r = httpx.get(self.url, headers=headers)
             r.raise_for_status()

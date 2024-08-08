@@ -3,6 +3,7 @@ import json
 import argparse
 
 from nbweb.app import get_content
+from nbweb.app import get_rss
 
 
 def parse_args():
@@ -20,6 +21,10 @@ def parse_args():
         help="choose the output format. default is json",
     )
 
+    parser.add_argument(
+        "--rss", action="store_true", help="returns the rss information"
+    )
+
     args = parser.parse_args()
     return args
 
@@ -27,8 +32,11 @@ def parse_args():
 def cli() -> None:
     args = parse_args()
 
-    content = get_content(args.url, args.format)
-    print(content)
+    if args.rss == True:
+        content = get_rss(args.url)
+    else:
+        content = get_content(args.url, args.format)
+    print(json.dumps(content, indent=4))
 
 
 if __name__ == "__main__":
