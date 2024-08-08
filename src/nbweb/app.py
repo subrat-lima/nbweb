@@ -28,7 +28,7 @@ def get_rss(url: str):
 def json2txt(content):
     data = ""
     for attr, value in content.items():
-        data += f"{attr}:\n{value}\n\n"
+        data += f"{value}\n\n"
     return data
 
 

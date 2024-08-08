@@ -28,8 +28,10 @@ class Parser:
         for article in articles:
             item = {}
             for key in self.rules["item"]:
-                item[key] = self._get_content_by_css(
-                    self.rules["item"][key]["selector"], Selector(text=article)
+                item[key] = (
+                    Selector(text=article)
+                    .css(self.rules["item"][key]["selector"])
+                    .get()
                 )
             data.append(item)
         return data

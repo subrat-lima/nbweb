@@ -36,7 +36,7 @@ def cli() -> None:
         content = get_rss(args.url)
     else:
         content = get_content(args.url, args.format)
-    print(json.dumps(content, indent=4))
+    print(content)
 
 
 if __name__ == "__main__":

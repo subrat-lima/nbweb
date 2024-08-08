@@ -9,7 +9,7 @@
                     "selector": "h5::text"
                 },
                 "link": {
-                    "selector": "a:first-child::attr(href)"
+                    "selector": "a:nth-child(1)::attr(href)"
                 },
                 "description": {
                     "selector": "p::text"
