@@ -11,7 +11,7 @@ from fake_useragent import UserAgent
 
 HOME_DIR = os.path.expanduser("~")
 HTML_DIR = os.path.join(HOME_DIR, ".cache", "nbweb", "html")
-CACHE_SAVE_DAYS = 7
+CACHE_SAVE_DAYS = 1
 
 
 class Page:
