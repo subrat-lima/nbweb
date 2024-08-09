@@ -4,6 +4,7 @@ import argparse
 
 from nbweb.app import get_content
 from nbweb.app import get_rss
+from nbweb.app import check_is_supported
 
 
 def parse_args():
@@ -21,6 +22,8 @@ def parse_args():
         help="choose the output format. default is json",
     )
 
+    parser.add_argument("--supported", action="store_true", help="returns yes if supported else no")
+
     parser.add_argument(
         "--rss", action="store_true", help="returns the rss information"
     )
@@ -34,6 +37,8 @@ def cli() -> None:
 
     if args.rss == True:
         content = get_rss(args.url)
+    elif args.supported == True:
+        content = check_is_supported(args.url)
     else:
         content = get_content(args.url, args.format)
     print(content)

@@ -10,6 +10,8 @@ from nbweb.parser import Parser
 
 def get_content(url: str, return_type: str):
     rules = get_rules(url, "rules")
+    if rules is None:
+        raise TypeError("url not supported")
     html = Page(url).get()
     content = Parser(rules, html).get()
     if return_type == "txt":
@@ -19,11 +21,18 @@ def get_content(url: str, return_type: str):
 
 def get_rss(url: str):
     rules = get_rules(url)
+    if rules is None:
+        raise TypeError("url not supported")
     html = Page(url).get()
     data = Parser(rules["rss"], html).get_rss()
     rss = json2rss(rules, data)
     return rss
 
+def check_is_supported(url: str) -> str:
+    rules = get_rules(url)
+    if rules is None:
+        return "no"
+    return "yes"
 
 def json2txt(content):
     data = ""
@@ -80,5 +89,4 @@ def get_rules(url: str, data_type=None):
             if data_type is None:
                 return entry
             return entry[data_type]
-    raise TypeError("url not supported")
     return None
