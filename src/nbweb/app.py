@@ -4,16 +4,16 @@ from datetime import datetime
 from importlib.resources import files
 from urllib.parse import urlparse
 
+from nbweb.extractor import get_valid_extractor
 from nbweb.page import Page
 from nbweb.parser import Parser
 
 
 def get_content(url: str, return_type: str):
-    rules = get_rules(url, "rules")
-    if rules is None:
+    extractor = get_valid_extractor(url)
+    if extractor is None:
         raise TypeError("url not supported")
-    html = Page(url).get()
-    content = Parser(rules, html).get()
+    content = extractor.extract(url)
     if return_type == "txt":
         return json2txt(content)
     return content
