@@ -1,8 +1,8 @@
 import json
 import xml.etree.ElementTree as ET
+from datetime import datetime
 from importlib.resources import files
 from urllib.parse import urlparse
-from datetime import datetime
 
 from nbweb.page import Page
 from nbweb.parser import Parser
@@ -28,11 +28,13 @@ def get_rss(url: str):
     rss = json2rss(rules, data)
     return rss
 
+
 def check_is_supported(url: str) -> str:
     rules = get_rules(url)
     if rules is None:
         return "no"
     return "yes"
+
 
 def json2txt(content):
     data = ""

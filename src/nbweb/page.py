@@ -1,13 +1,9 @@
 import os
 import re
-
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 import httpx
-
 from fake_useragent import UserAgent
-
 
 HOME_DIR = os.path.expanduser("~")
 HTML_DIR = os.path.join(HOME_DIR, ".cache", "nbweb", "html")
