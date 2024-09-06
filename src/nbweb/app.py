@@ -1,12 +1,7 @@
-import json
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from importlib.resources import files
-from urllib.parse import urlparse
 
 from nbweb.extractor import get_valid_extractor
-from nbweb.page import Page
-from nbweb.parser import Parser
 
 
 def get_content(url: str, return_type: str):
@@ -19,19 +14,9 @@ def get_content(url: str, return_type: str):
     return content
 
 
-def get_rss(url: str):
-    rules = get_rules(url)
-    if rules is None:
-        raise TypeError("url not supported")
-    html = Page(url).get()
-    data = Parser(rules["rss"], html).get_rss()
-    rss = json2rss(rules, data)
-    return rss
-
-
 def check_is_supported(url: str) -> str:
-    rules = get_rules(url)
-    if rules is None:
+    extractor = get_valid_extractor(url)
+    if extractor is None:
         return "no"
     return "yes"
 
@@ -80,15 +65,3 @@ def json2rss(rules, content):
 
     xmlstr = ET.tostring(root, encoding="unicode")
     return xmlstr
-
-
-def get_rules(url: str, data_type=None):
-    u = urlparse(url)
-    json_data = json.loads(files("nbweb").joinpath("data.json").read_text())
-    for entry in json_data:
-        e = urlparse(entry["url"])
-        if u.hostname in e.hostname:
-            if data_type is None:
-                return entry
-            return entry[data_type]
-    return None

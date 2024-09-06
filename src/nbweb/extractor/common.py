@@ -44,6 +44,13 @@ class InfoExtractor:
         if content is not None:
             return "\n".join(content)
 
+    def _query_jmespath(self, webpage, selector):
+        parser = Selector(text=webpage)
+        elems = parser.jmespath(selector).getall()
+        if elems is not None and len(elems) > 0:
+            return "\n".join(elems)
+        return ""
+
     def _query_selector_all(self, webpage, selector):
         parser = Selector(text=webpage)
         content = parser.css(selector).getall()
