@@ -50,11 +50,11 @@ class OTVIE(InfoExtractor):
         published_at = self._query_selector(
             webpage, "ul.article-author:nth-child(3) > li:nth-child(1)::text"
         ).replace("Published: ", "")
-        img = self._query_selector(
-            # webpage, "div#storymultiimg div.article-featured > img::attr(data-src)"
+        img = self._get_meta_property(
             webpage,
-            "div.article-featured > img::attr(data-src)",
+            "og:image",
         )
+        # author = self._get_meta_property(webpage, "author")
         content = self._query_selector(webpage, "div.article-content > p::text").strip()
 
         return {
@@ -65,3 +65,46 @@ class OTVIE(InfoExtractor):
             "img": img,
             "content": content,
         }
+
+
+class OTVListIE(InfoExtractor):
+    _IE_NAME = "otv"
+    _VALID_URLS = [
+        r"https://odishatv.in/(?P<id>\w+)",
+        # r"https://otvkhabar.in/news/(?:\w+)/[\w-]+/(?P<id>[\d]+)",
+    ]
+    _TESTS = [
+        {
+            "url": "https://odishatv.in/sports",
+            "info_dict": {
+                "id": "sports",
+                "min_count": 15,
+            },
+        },
+    ]
+
+    def _extract(self, url):
+        # id = self._get_id(url)
+        webpage = self._request_webpage(url)
+
+        news_articles = []
+
+        articles = self._query_selector_all(
+            webpage,
+            "div.listing-news-start .listing-result-news, div.mobile-listing-start div.mobile-listing",
+        )
+        for article in articles:
+            news_articles.append(
+                {
+                    "title": self._query_selector(article, "h5::text"),
+                    "link": self._query_selector_all(
+                        article, "a:nth-child(1)::attr(href)"
+                    )[0],
+                    "description": self._query_selector(article, "p::text"),
+                    "published": self._query_selector(
+                        article, "ul > li:first-child::text"
+                    ),
+                }
+            )
+
+        return news_articles

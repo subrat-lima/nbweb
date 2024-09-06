@@ -3,7 +3,7 @@
 import hashlib
 import sys
 
-from nbweb.extractor import get_extractor_by_name
+from nbweb.extractor import get_all_extractors, get_extractor_by_name
 
 
 def match_value(a, b):
@@ -24,12 +24,26 @@ def run_test(extractor, test):
         sys.exit(1)
 
 
+def run_all_extractor_tests():
+    for extractor in get_all_extractors():
+        extractor = extractor()
+        for test in extractor._TESTS:
+            run_test(extractor, test)
+
+
 def run_tests():
     if len(sys.argv) < 2:
         print("Error: arguments missing")
         print_usage()
         sys.exit(1)
+    if sys.argv[1] == "__ALL__":
+        run_all_extractor_tests()
+        sys.exit(0)
     extractor = get_extractor_by_name(sys.argv[1])
+    if extractor is None:
+        print("Error: invalid extractor name")
+        print_usage()
+        sys.exit(1)
     tests = extractor._TESTS
     for test in tests:
         run_test(extractor, test)

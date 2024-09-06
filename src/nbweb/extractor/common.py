@@ -26,6 +26,13 @@ class InfoExtractor:
             return match.group("id")
         return url
 
+    def _get_meta_property(self, webpage, property):
+        parser = Selector(text=webpage)
+        content = parser.css(f"meta[name='{property}']::attr(content)").get()
+        if content is None:
+            content = parser.css(f"meta[property='{property}']::attr(content)").get()
+        return content
+
     def _get_html_title(self, webpage):
         parser = Selector(text=webpage)
         title = parser.css("title::text").get()
@@ -36,6 +43,11 @@ class InfoExtractor:
         content = parser.css(selector).getall()
         if content is not None:
             return "\n".join(content)
+
+    def _query_selector_all(self, webpage, selector):
+        parser = Selector(text=webpage)
+        content = parser.css(selector).getall()
+        return content
 
     def extract(self, url):
         return self._extract(url)
