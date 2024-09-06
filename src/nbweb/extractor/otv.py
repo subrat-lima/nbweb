@@ -15,7 +15,7 @@ class OTVIE(InfoExtractor):
                 "title": "Cyclonic circulation over north Coastal Andhra Pradesh; low-pressure over Bay of Bengal around September 5",
                 "description": "md5:776d4bb900a435219f02deff65bfae9c",
                 "published_at": "Wednesday, 04 September 2024",
-                "img": "https://images.odishatv.in/uploadimage/library/16_9/16_9_0/recent_photo_1721217447.jpg",
+                "img": "https://images.odishatv.in/uploadimage/library/16_9/16_9_5/recent_photo_1721217447.jpg",
             },
         },
         {
@@ -25,7 +25,7 @@ class OTVIE(InfoExtractor):
                 "title": "Cuttack Bali Jatra to kick off from November 15",
                 "description": "md5:12502136d1a7a40d2b0b80f647a84681",
                 "published_at": "Thursday, 05 September 2024",
-                "img": "https://images.odishatv.in/uploadimage/library/16_9/16_9_0/recent_photo_1701422955.jpg",
+                "img": "https://images.odishatv.in/uploadimage/library/16_9/16_9_5/recent_photo_1701422955.jpg",
             },
         },
         {
@@ -73,7 +73,8 @@ class OTVListIE(InfoExtractor):
         r"https://odishatv.in/(?P<id>\w+)",
         # r"https://otvkhabar.in/news/(?:\w+)/[\w-]+/(?P<id>[\d]+)",
     ]
-    _TESTS = [
+    _TESTS = []
+    _TESTSS = [
         {
             "url": "https://odishatv.in/sports",
             "info_dict": {

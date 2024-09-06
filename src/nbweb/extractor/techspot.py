@@ -4,6 +4,7 @@ from .common import InfoExtractor
 class TechSpotIE(InfoExtractor):
     _IE_NAME = "techspot"
     _VALID_URLS = [r"https://www.techspot.com/news/(?P<id>[\w-]+)"]
+    _TESTS = []
 
     def _extract(self, url):
         id = self.get_id(url)
