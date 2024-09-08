@@ -13,7 +13,7 @@ def parse_args():
     parser.add_argument(
         "-f",
         "--format",
-        choices=["json", "txt"],
+        choices=["json", "html", "txt"],
         default="json",
         help="choose the output format. default is json",
     )

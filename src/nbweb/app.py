@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
+from nbweb.convert import convert_article_json_to_txt,  convert_article_json_to_html
 from nbweb.extractor import get_valid_extractor
 
 
@@ -10,7 +11,9 @@ def get_content(url: str, return_type: str):
         raise TypeError("url not supported")
     content = extractor.extract(url)
     if return_type == "txt":
-        return json2txt(content)
+        content = convert_article_json_to_txt(content)
+    elif return_type == "html":
+        content =  convert_article_json_to_html(content)
     return content
 
 
