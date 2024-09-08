@@ -3,12 +3,12 @@ from .common import InfoExtractor
 
 
 class OTVIE(InfoExtractor):
-    _IE_NAME = "otv"
-    _VALID_URLS = [
+    _IE_NAME: str = "otv"
+    _VALID_URLS: list[str] = [
         r"https://odishatv.in/news/(?:\w+)/(?P<id>[\w-]+)",
         r"https://otvkhabar.in/news/(?:\w+)/[\w-]+/(?P<id>[\d]+)",
     ]
-    _TESTS = [
+    _TESTS: list[dict] = [
         {
             "url": "https://odishatv.in/news/weather/cyclonic-circulation-over-north-coastal-andhra-pradesh-low-pressure-bay-of-bengal-on-september-5-243347",
             "info_dict": {
@@ -74,21 +74,12 @@ class OTVIE(InfoExtractor):
 
 
 class OTVListIE(InfoExtractor):
-    _IE_NAME = "otv"
-    _VALID_URLS = [
+    _IE_NAME: str = "otv"
+    _VALID_URLS: list[str] = [
         r"https://odishatv.in/(?P<id>\w+)",
         # r"https://otvkhabar.in/news/(?:\w+)/[\w-]+/(?P<id>[\d]+)",
     ]
-    _TESTS = []
-    _TESTSS = [
-        {
-            "url": "https://odishatv.in/sports",
-            "info_dict": {
-                "id": "sports",
-                "min_count": 15,
-            },
-        },
-    ]
+    _TESTS: list[dict] = []
 
     def _extract(self, url):
         # id = self._get_id(url)

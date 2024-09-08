@@ -39,7 +39,7 @@ def test_success() -> None:
     assert html is not None
 
 
-def monkeypatch_func(*kargs, **kwargs) -> None:
+def monkeypatch_func(*kargs, **kwargs) -> str:
     return "one two three"
 
 

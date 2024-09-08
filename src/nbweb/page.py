@@ -3,7 +3,7 @@ import re
 from datetime import datetime, timedelta
 
 import httpx
-from fake_useragent import UserAgent
+from fake_useragent import UserAgent  # type: ignore
 
 HOME_DIR = os.path.expanduser("~")
 HTML_DIR = os.path.join(HOME_DIR, ".cache", "nbweb", "html")
@@ -17,7 +17,8 @@ class Page:
         self._set_filename()
         self._clear_old_cache()
 
-    def get(self) -> str:
+    def get(self) -> str | None:
+        html = None
         if os.path.exists(self.filepath):
             html = self._fetch_from_cache()
         else:
@@ -41,10 +42,11 @@ class Page:
     def _set_filename(self) -> None:
         regex = r"^(https?://)?(?P<url>[^?#]+)"
         result = re.search(regex, self.url)
-        self.filename = re.sub(r"\W+", "_", result.group("url"))
-        self.filepath = os.path.join(HTML_DIR, self.filename)
+        if result is not None:
+            self.filename = re.sub(r"\W+", "_", result.group("url"))
+            self.filepath = os.path.join(HTML_DIR, self.filename)
 
-    def _fetch(self) -> str:
+    def _fetch(self) -> str | None:
         try:
             ua = UserAgent(platforms="pc")
             headers = {"User-Agent": ua.random}
