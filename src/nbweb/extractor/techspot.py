@@ -4,13 +4,15 @@ from .common import InfoExtractor
 class TechSpotIE(InfoExtractor):
     _IE_NAME = "techspot"
     _VALID_URLS = [r"https://www.techspot.com/news/(?P<id>[\d]+)[\w-]+"]
-    _TESTS = [{
+    _TESTS = [
+        {
             "url": "https://www.techspot.com/news/104596-lenovo-auto-twist-pc-has-display-automatically-follows.html",
             "info_dict": {
                 "id": "104596",
-                "title": "Lenovo's crazy \"Auto Twist\" PC can turn and face you automatically",
+                "title": 'Lenovo\'s crazy "Auto Twist" PC can turn and face you automatically',
             },
-        }]
+        }
+    ]
 
     def _extract(self, url):
         id = self._get_id(url)

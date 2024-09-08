@@ -7,7 +7,7 @@ from nbweb.app import check_is_supported, get_content
 def parse_args():
     parser = argparse.ArgumentParser(
         prog="nbweb",
-        description= "nbweb is a simple tool to extract data from websites",
+        description="nbweb is a simple tool to extract data from websites",
     )
     parser.add_argument("url", nargs="?", type=str, help="enter an url")
     parser.add_argument(
@@ -21,7 +21,6 @@ def parse_args():
     parser.add_argument(
         "--supported", action="store_true", help="returns yes if supported else no"
     )
-
 
     parser.add_argument(
         "-v", "--version", action="store_true", help="show version number"
