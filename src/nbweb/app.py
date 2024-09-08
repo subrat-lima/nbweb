@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
-from nbweb.convert import convert_article_json_to_txt,  convert_article_json_to_html
+from nbweb.convert import convert_article_json_to_html, convert_article_json_to_txt
 from nbweb.extractor import get_valid_extractor
 
 
@@ -13,7 +13,7 @@ def get_content(url: str, return_type: str):
     if return_type == "txt":
         content = convert_article_json_to_txt(content)
     elif return_type == "html":
-        content =  convert_article_json_to_html(content)
+        content = convert_article_json_to_html(content)
     return content
 
 

@@ -9,7 +9,7 @@ def strip_html_attrs(html):
 
 
 def html2text(html):
-    html = re.sub(r"<br/?>", "\n", html)
+    html = re.sub(r"<br/?>", "\n\n", html)
     html = re.sub(r"<\s*/\s*(p|div|section|article)\s*>", "\n\n", html)
     html = re.sub(r"<\s*/?[\w-]+[^>]*?>", "", html)
     html = re.sub(r"[ \t]+", " ", html)

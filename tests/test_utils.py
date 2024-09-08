@@ -10,9 +10,9 @@ _TEST_SAMPLE_FOR_HTML2TEXT_FUNCTION = [
         " <html>   <body>  <div>  hello   world   </div>   </body>   </html>  ",
         "hello world",
     ),
-    ("simple-paragraph", "<p>hello</p><p>world</p>", "hello\nworld"),
-    ("simple-br-tag-1-non-self-closing", "hello<br>world", "hello\nworld"),
-    ("simple-br-tag-2-self-closing", "hello<br/>world", "hello\nworld"),
+    ("simple-paragraph", "<p>hello</p><p>world</p>", "hello\n\nworld"),
+    ("simple-br-tag-1-non-self-closing", "hello<br>world", "hello\n\nworld"),
+    ("simple-br-tag-2-self-closing", "hello<br/>world", "hello\n\nworld"),
 ]
 
 
