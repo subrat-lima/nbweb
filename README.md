@@ -26,18 +26,8 @@ nbweb --supported <url>
 nbweb -v
 ```
 
-## supported websites
-list of supported websites can be found in the 'data.json' file
-
-## features
-* output as text or json 
-* auto delete cache after 7 days
-* return rss feed (only 1 website supported)
-* checks if site is supported
-
-
 ## about
 inspired by [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
 ## note
-- this application is currently in experimental phase
+- this application is currently in experimental phase and a complete rewrite is in process to make it modular.
